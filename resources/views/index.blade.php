@@ -31,7 +31,7 @@
                            placeholder="Rechercher" name="search"
                            type="text" id="search"/>
       </div>
-      <button href="#!" class="btn btn-success btn-md my-0 ml-sm-2" type="submit">Rechercher</button>
+      <button href="#!" class="btn btn-success btn-md btn-rounded my-0 ml-sm-2" type="submit">Rechercher</button>
     </form>
 <div align="right">
  <a href="{{ route('employee.create') }}" class="btn btn-success">
