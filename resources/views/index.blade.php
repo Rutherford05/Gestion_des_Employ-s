@@ -1,12 +1,6 @@
     
 @extends('layouts.master')
 @section('content')
-
-<style>
-        .container{
-            padding:0.5%;
-        }
-    </style>
 <div class="container-fluid">
 <h1 class="alert alert-dark text-center " style="color:red; text:bold">VOLKENO STAGE</h1>
 
