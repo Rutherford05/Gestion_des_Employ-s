@@ -89,7 +89,7 @@ class EmployeeController extends Controller
             ]);
 
         }
-        $data->nom= $request['nom'];
+             $data->nom= $request['nom'];
              $data->prenom = $request['prenom'];
              $data->sexe= $request['sexe'];
              $data->email= $request['email'];
