@@ -20,5 +20,5 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('employee', 'EmployeeController');
 Route::delete('/employee/{id}/delete','EmployeeController@destroy');
-Route::put('/employee/{id}/update','EmployeeController@');
+Route::put('/employee/{id}/update','EmployeeController@update');
 Route::get('/search','EmployeeController@search');

@@ -59,7 +59,7 @@ class EmployeeController extends Controller
     {
         $image_name = $request->hidden_image;
         $image = $request->file('image');
-        if($request->hasFile('image'))  
+        if($image != '')  
         {
             $this->validate($request, [
                 'nom'    =>  'required|',
@@ -69,9 +69,9 @@ class EmployeeController extends Controller
                 'telephone'     =>  'required|',
                 'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ]);
-            $filename = $image->getClientOriginalName();
             $image_name = rand() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('images'), $filename);
+            $image->move(public_path('images'), $image_name);
+           
         }
         else 
         {
@@ -83,16 +83,16 @@ class EmployeeController extends Controller
                 'telephone'     =>  'required|',
                 
             ]);
-            $input_data = array(
+            $form_data = array(
                 'nom'       =>   $request->nom,
                 'prenom'        =>   $request->prenom,
                 'sexe'        =>      $request->sexe,
                 'email'        =>       $request->email,
                 'telephone'        =>       $request->telephone,
-                'image'            =>   $image,
+                'image'            =>   $image_name
             );
         }
-        Employee::whereId($id)->update($input_data);
+        Employee::whereId($id)->update($form_data);
         return redirect('employee')->with('Success', 'Employee Updated Successfully');
     }
     
