@@ -57,10 +57,14 @@ class EmployeeController extends Controller
  
     public function update(Request $request, $id)
     {
+        $data=Employee::findOrFail($id); 
         $image_name = $request->hidden_image;
         $image = $request->file('image');
-        if($image != '')  
+        if($request->hasFile('image'))
         {
+            $file = $request->file('image');
+            $name =$image->getClientOriginalName();
+            $data->image = $name;
             $this->validate($request, [
                 'nom'    =>  'required|',
                 'prenom'     =>  'required|',
@@ -70,7 +74,7 @@ class EmployeeController extends Controller
                 'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ]);
             $image_name = rand() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('images'), $image_name);
+            $file->move(public_path('images'), $name);
            
         }
         else 
@@ -83,16 +87,14 @@ class EmployeeController extends Controller
                 'telephone'     =>  'required|',
                 
             ]);
-            $form_data = array(
-                'nom'       =>   $request->nom,
-                'prenom'        =>   $request->prenom,
-                'sexe'        =>      $request->sexe,
-                'email'        =>       $request->email,
-                'telephone'        =>       $request->telephone,
-                'image'            =>   $image_name
-            );
+
         }
-        Employee::whereId($id)->update($form_data);
+        $data->nom= $request['nom'];
+             $data->prenom = $request['prenom'];
+             $data->sexe= $request['sexe'];
+             $data->email= $request['email'];
+             $data->telephone= $request['telephone'];
+             $data->save();
         return redirect('employee')->with('Success', 'Employee Updated Successfully');
     }
     
