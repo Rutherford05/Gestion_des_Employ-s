@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Employee;
 use Redirect;
+use DB;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 class EmployeeController extends Controller
 {
@@ -16,6 +17,12 @@ class EmployeeController extends Controller
     public function create()
     {
         return view('create');
+    }
+    public function search(Request $request){
+        $search=$request->get('search');
+        $data=DB::table('employees')->where('nom','like','%'.$search.'%')->paginate(3);
+        return view('index',['data'=>$data]);
+             
     }
     public function store(Request $request)
     {
@@ -52,7 +59,7 @@ class EmployeeController extends Controller
     {
         $image_name = $request->hidden_image;
         $image = $request->file('image');
-        if($image != '')  
+        if($request->hasFile('image'))  
         {
             $this->validate($request, [
                 'nom'    =>  'required|',
@@ -62,8 +69,9 @@ class EmployeeController extends Controller
                 'telephone'     =>  'required|',
                 'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ]);
+            $filename = $image->getClientOriginalName();
             $image_name = rand() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('images'), $image_name);
+            $image->move(public_path('images'), $filename);
         }
         else 
         {
@@ -81,7 +89,7 @@ class EmployeeController extends Controller
                 'sexe'        =>      $request->sexe,
                 'email'        =>       $request->email,
                 'telephone'        =>       $request->telephone,
-                'image'            =>   $image_name,
+                'image'            =>   $image,
             );
         }
         Employee::whereId($id)->update($input_data);

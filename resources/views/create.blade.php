@@ -18,7 +18,7 @@
         }
     </style>
 <div class="container">
-<h2 class="alert alert-success text-center color:red">Bienvenu!! Veuillez créer un employé</h2>
+<h2 class="alert alert-success text-center color:red">BIENVENU VEUILLER AJOUTER UN STAGIAIRE</h2>
 </div>
 <div class="container">
     <div class="row justify-content-center">

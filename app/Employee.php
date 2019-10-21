@@ -10,3 +10,4 @@ class Employee extends Model
         'nom', 'prenom', 'sexe', 'email', 'telephone', 'image'
        ];
 }
+

@@ -21,3 +21,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('employee', 'EmployeeController');
 Route::delete('/employee/{id}/delete','EmployeeController@destroy');
 Route::put('/employee/{id}/update','EmployeeController@');
+Route::get('/search','EmployeeController@search');

@@ -17,7 +17,7 @@
         }
     </style>
 <div class="container">
-<h1 class="alert alert-dark text-center " style="color:red; text:bold">GESTION DES EMPLOYES</h1>
+<h1 class="alert alert-dark text-center " style="color:red; text:bold">VOLKENO STAGE</h1>
 <br>
 <h2 class="alert alert-success " > Modifier l'Employé<span class="fa fa-user" style="float:right"> {{$data->nom}}  {{$data->prenom}}</span> </h2>
 </div>

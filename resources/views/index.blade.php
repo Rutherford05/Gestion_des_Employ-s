@@ -7,8 +7,8 @@
             padding:0.5%;
         }
     </style>
-<div class="container">
-<h1 class="alert alert-dark text-center " style="color:red; text:bold">GESTION DES EMPLOYES</h1>
+<div class="container-fluid">
+<h1 class="alert alert-dark text-center " style="color:red; text:bold">VOLKENO STAGE</h1>
 
 @if($message = Session::get('Success'))
 <div class="alert alert-success">
@@ -24,18 +24,16 @@
 
 </div>
 <div class="input-group">
-<form class="form-inline ml-auto">
+<form class="form-inline ml-auto" action="/search">
       <div class="md-form my-0">
-      <input class="form-control" id="search"
-                           value="{{ request('search') }}"
-                           placeholder="Rechercher" name="search"
-                           type="text" id="search"/>
+      <input class="form-control form-control-sm mr-3 w-85" type="search" name="search" placeholder="Rechercher"
+    aria-label="Search">
       </div>
-      <button href="#!" class="btn btn-success btn-md btn-rounded my-0 ml-sm-2" type="submit">Rechercher</button>
+      <i class="fas fa-search" aria-hidden="true"></i>
     </form>
 <div align="right">
- <a href="{{ route('employee.create') }}" class="btn btn-success">
- <span class="fa fa-plus-circle"> Ajouter un Employé</span></a>
+ <a href="{{ route('employee.create') }}" class="btn btn-primary">
+ <span class="fa fa-plus-circle"> Ajouter un Stagiaire</span></a>
 </div>
 <table class="table table-bordered table-striped bg-dark" style="color:white; border:none">
  <tr class="text-center">
