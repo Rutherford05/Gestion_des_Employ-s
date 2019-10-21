@@ -9,7 +9,7 @@ class EmployeeController extends Controller
 {
     public function index()
     {
-        $data = Employee::latest()->paginate(3);
+        $data = Employee::latest()->paginate(5);
         return view('index', compact('data'))
                 ->with('i', (request()->input('page', 1) - 1) * 5);
     }
@@ -95,7 +95,7 @@ class EmployeeController extends Controller
              $data->email= $request['email'];
              $data->telephone= $request['telephone'];
              $data->save();
-        return redirect('employee')->with('Success', 'Employee Updated Successfully');
+        return redirect('employee')->with('Success', 'Le Stagiaire a été modifié avec success');
     }
     
     public function destroy($id) 
